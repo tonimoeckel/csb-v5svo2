@@ -5,8 +5,7 @@ function animateScript(index) {
   const size = 500;
   const col = index % 6;
   const row = Math.floor(index / 6);
-  console.log(index, row, col);
-  console.log(`${size * col}px ${size * row}px`);
+
   document.getElementById("image").style.backgroundPosition = `-${
     size * col
   }px -${size * row}px`;
@@ -31,13 +30,15 @@ window.addEventListener("keyup", (evt) => {
     if (timer) stop();
     else start();
   }
-  if (evt.key === "ArrowRight") {
-    currentPosition = (currentPosition + 1) % 24;
+  if (evt.key === "ArrowRight" || evt.key === "r") {
+    currentPosition = currentPosition + 1;
+    currentPosition = currentPosition % 24;
     animateScript(currentPosition);
   }
-  if (evt.key === "ArrowLeft") {
+  if (evt.key === "ArrowLeft" || evt.key === "l") {
     if (currentPosition === 0) currentPosition = 24;
-    currentPosition = (currentPosition - 1) % 24;
+    currentPosition = currentPosition - 1;
+    currentPosition = currentPosition % 24;
     animateScript(currentPosition);
   }
 });
